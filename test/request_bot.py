@@ -23,3 +23,5 @@ While True:
 
     end_time = time.time()
     print(f'Время между запросами к Telegram Bot API: {end_time - start_time}')
+
+    print("test_GIT")
