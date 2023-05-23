@@ -45,5 +45,8 @@ def get_course():
 
 # for item in get_course():
 #     print(item)
+
+if __name__ == '__main__':
+    get_course()
 # row_0 = row_0.strip('\n')
 # row_0 = row_0.split(sep='\n')
