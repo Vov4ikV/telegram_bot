@@ -56,4 +56,4 @@ def get_random_vacancy():
 
     return list_of_data_vacancy
 
-print(get_random_vacancy())
+# print(get_random_vacancy())

@@ -45,5 +45,5 @@ def get_weather_spb() -> list:
     # возвращаем из функции список
     return weather_day_list
 
-for item in get_weather_spb():
-    print(item)
+# for item in get_weather_spb():
+#     print(item)
