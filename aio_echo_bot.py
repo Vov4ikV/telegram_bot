@@ -33,24 +33,24 @@ async def send_photo_echo(message: Message):
 async def send_sticker_echo(message: Message):
     await message.reply_sticker(message.sticker.file_id)
 
-# Этот хэндлер будет срабатывать на отправку боту любого сообщения
-@dp.message()
-async def send_echo(message: Message):
-    await message.reply(text=message.text)
 
 # Home_work
 @dp.message(Command(commands=['vacancy']))
-async def process_help_command(message: Message):
+async def get_vacancy(message: Message):
     await message.answer(get_random_vacancy())
 
 @dp.message(Command(commands=['courses']))
-async def process_help_command(message: Message):
+async def get_course(message: Message):
     await message.answer(get_course())
 
 @dp.message(Command(commands=['weather']))
-async def process_weather_command(message: Message):
-    send_msg = get_weather_spb()
-    await message.answer('123')
+async def get_weather_command (message: Message):
+    weather = get_weather_spb()
+    date = weather[0]
+    night = f'\n {weather[1] ["weather_day"]} {weather[1] ["temperature"]}, {weather[1] ["tooltip"]}\n'
+    day = f'\n {weather[2] ["weather_day"]} {weather[2] ["temperature"]}, {weather[2] ["tooltip"]}\n'
+    evenin = f'\n {weather[3] ["weather_day"]} {weather[3] ["temperature"]}, {weather[3] ["tooltip"]}\n'
+    await message.answer(date+night+day+evenin)
 
 # Регистрируем хэндлеры
 # dp.message.register(process_start_command, Command(commands=["start"]))
@@ -73,3 +73,9 @@ async def process_weather_command(message: Message):
 
 if __name__ == '__main__':
     dp.run_polling(bot)
+
+
+# Этот хэндлер будет срабатывать на отправку боту любого сообщения
+@dp.message()
+async def send_echo(message: Message):
+    await message.reply(text=message.text)
