@@ -2,7 +2,7 @@ import requests                         # библиотека HTTP-запрос
 from bs4 import BeautifulSoup           # библиотека для парсинга html-страницы
 from fake_useragent import UserAgent    # класс для user-agent
 
-# Определяем функцию получения погоды. -> list говорит о том, что результатом будет список
+# определяем функцию получения погоды. -> list говорит о том, что результатом будет список
 def get_weather_spb() -> list:
     # создаем объект класса UserAgent для генерации случайного значения браузера
     ua = UserAgent()
@@ -12,18 +12,14 @@ def get_weather_spb() -> list:
     response = requests.get(URL, headers={'User-agent': ua.random})
     # получаем html-код страницы из ответа
     html: str = response.text
-    # Создаем объект класса BeautifulSoup. 1-й аргумент - код html-страницы, 2-й аргумент - парсер для html ('html.parser')
+    # создаем объект класса BeautifulSoup. 1-й аргумент - код html-страницы, 2-й аргумент - парсер для html ('html.parser')
     soup = BeautifulSoup(html, 'html.parser')
-
     # получаем дату со странички по тегу: <div class="dates short-d"><span>Среда</span>, 19 апреля</div>
     date: str = soup.find('div', 'dates short-d').text
-
     # получаем таблицу по тегу: <table class="weather-today short">
     table_weather_today = soup.find('table', 'weather-today short')
-
     # находим все строки <tr> в найденной таблице
     rows_table_today = table_weather_today.find_all(name='tr')
-
     # создаем список, куда будем вносить погоду по времени суток за день (ночь, утро, день, вечер)
     weather_day_list: list = []
 
@@ -48,5 +44,12 @@ def get_weather_spb() -> list:
 # for item in get_weather_spb():
 #     print(item)
 
+# if __name__ == '__main__':
+#     print(*get_weather_spb(), sep='\n')
+
 if __name__ == '__main__':
-    get_weather_spb()
+    print(__name__)
+    print('oops')
+else:
+    print(__name__)
+

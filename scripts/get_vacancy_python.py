@@ -1,7 +1,7 @@
 import requests
 from random import randint, sample
 
-def get_random_random_vacancy():
+def get_random_vacancy():
     # определяем URL с вакансиями
     URL: str = 'https://api.hh.ru/vacancies?'
 
@@ -25,8 +25,7 @@ def get_random_random_vacancy():
     count_id = data['found']    # всего вакансий найдено
 
     # проходимся по каждой странице
-    # for i in range(count_page + 1):
-    for i in range(2):
+    for i in range(count_page + 1):
         resp = requests.get(f'https://api.hh.ru/vacancies?page={i}&per_page=100&text=python&area=2')
         data = resp.json()
         # и получаем с нее все id вакансий
@@ -56,7 +55,5 @@ def get_random_random_vacancy():
 
     return list_of_data_vacancy
 
-# print(get_random_vacancy())
-
 if __name__ == '__main__':
-    get_random_random_vacancy()
+    get_random_vacancy()
