@@ -3,7 +3,7 @@ from aiogram.filters import Command
 from aiogram.types import Message
 from config import BOT_TOKEN
 from scripts.get_weather import get_weather_spb
-from scripts.get_vacancy_python import get_random_random_vacancy
+from scripts.get_vacancy_python import get_random_vacancy
 from scripts.get_course_update import get_course
 
 # токен вашего бота, полученный у @BotFather
@@ -38,7 +38,19 @@ async def send_sticker_echo(message: Message):
 async def send_echo(message: Message):
     await message.reply(text=message.text)
 
+# Home_work
+@dp.message(Command(commands=['vacancy']))
+async def process_help_command(message: Message):
+    await message.answer(get_random_vacancy())
 
+@dp.message(Command(commands=['courses']))
+async def process_help_command(message: Message):
+    await message.answer(get_course())
+
+@dp.message(Command(commands=['weather']))
+async def process_weather_command(message: Message):
+    send_msg = get_weather_spb()
+    await message.answer('123')
 
 # Регистрируем хэндлеры
 # dp.message.register(process_start_command, Command(commands=["start"]))
