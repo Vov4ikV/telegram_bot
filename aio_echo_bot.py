@@ -39,17 +39,20 @@ async def send_sticker_echo(message: Message):
 async def get_vacancy(message: Message):
     await message.answer(get_random_vacancy())
 
-@dp.message(Command(commands=['courses']))
-async def get_course(message: Message):
-    await message.answer(get_course())
+# @dp.message(Command(commands=['courses']))
+# async def get_course(message: Message):
+#     course = get_course()
+#     price = course[0]
+#     info = f'\n {course[0]}'
+#     await message.answer(course+info+price)
 
 @dp.message(Command(commands=['weather']))
-async def get_weather_command (message: Message):
+async def get_weather_command(message: Message):
     weather = get_weather_spb()
     date = weather[0]
-    night = f'\n {weather[1] ["weather_day"]} {weather[1] ["temperature"]}, {weather[1] ["tooltip"]}\n'
-    day = f'\n {weather[2] ["weather_day"]} {weather[2] ["temperature"]}, {weather[2] ["tooltip"]}\n'
-    evenin = f'\n {weather[3] ["weather_day"]} {weather[3] ["temperature"]}, {weather[3] ["tooltip"]}\n'
+    night = f'\n\n {weather[1] ["weather_day"]}: {weather[1] ["temperature"]}, {weather[1] ["tooltip"]}, Влажность: {weather[1] ["weather-humidity"]} \n'
+    day = f'\n {weather[2] ["weather_day"]}: {weather[2] ["temperature"]}, {weather[2] ["tooltip"]}, Влажность: {weather[2] ["weather-humidity"]} \n'
+    evenin = f'\n {weather[3] ["weather_day"]}: {weather[3] ["temperature"]}, {weather[3] ["tooltip"]}, Влажность: {weather[3] ["weather-humidity"]} \n'
     await message.answer(date+night+day+evenin)
 
 # Регистрируем хэндлеры
