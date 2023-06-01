@@ -39,12 +39,13 @@ async def send_sticker_echo(message: Message):
 async def get_vacancy(message: Message):
     await message.answer(get_random_vacancy())
 
-# @dp.message(Command(commands=['courses']))
-# async def get_course(message: Message):
-#     course = get_course()
-#     price = course[0]
-#     info = f'\n {course[0]}'
-#     await message.answer(course+info+price)
+@dp.message(Command(commands=['courses']))
+async def get_course_command(message: Message):
+    my_dict = get_course()
+    string_zero = ""
+    for item in my_dict.items():
+        string_zero += f'{item[0]}: {item[1]} \n'
+    await message.answer(string_zero)
 
 @dp.message(Command(commands=['weather']))
 async def get_weather_command(message: Message):

@@ -26,3 +26,5 @@ def get_course():
 if __name__ == '__main__':
     for item in get_course().items():
         print(item)
+
+
